@@ -83,17 +83,6 @@ public class FlowDefinition implements ProcessDefinition {
 				String nodeName=conn.getToName();
 				conn.setTo(getFlowNode(nodeName));
 			}
-			if(node instanceof RuleNode){
-				KnowledgePackageWrapper wrapper = ((RuleNode) node).getKnowledgePackageWrapper();
-				wrapper.buildDeserialize();
-				KnowledgePackage knowledgePackage=wrapper.getKnowledgePackage();
-				Map<String, FlowDefinition> flowMap=knowledgePackage.getFlowMap();
-				if(flowMap!=null && flowMap.size()>0){
-					for(FlowDefinition fd:flowMap.values()){
-						fd.buildConnectionToNode();
-					}
-				}
-			}
 		}
 	}
 	
